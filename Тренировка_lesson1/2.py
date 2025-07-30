@@ -54,19 +54,18 @@ print(f"Делится ли на 3 {num}? - {result}")
 #         print("Пожалйуста введите целое число от 1 до 12.")
 
 #Фильтрация списка
-# 
 
 #Range
-# my_list = list(range(25, 0, -5))
-# print(my_list)
+my_list = list(range(25, 0, -5))
+print(my_list)
 
-# #Поменять значения местами
-# var_1 = 50
-# var_2 = 5
+#Поменять значения местами
+var_1 = 50
+var_2 = 5
 
-# temp = var_1
-# var_1 = var_2
-# var_2 = temp
+temp = var_1
+ar_1 = var_2
+var_2 = temp
 
-# print("var_1 =")
+print("var_1 =")
 
