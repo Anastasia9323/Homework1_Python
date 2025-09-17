@@ -43,6 +43,6 @@ def test_shop():
 
     print(txt)
 
-    assert total == "Total: $58.29"
+    assert txt == "Total: $58.29"
 
     driver.quit()
