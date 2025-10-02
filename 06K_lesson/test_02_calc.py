@@ -16,7 +16,7 @@ def test_calculator():
     input_field = driver.find_element(By.CSS_SELECTOR, "#delay")
 
     input_field.clear()
-
+ 
     input_field.send_keys("45")
 
     button_7 = driver.find_element(By.XPATH, "//span[text()='7']").click()
