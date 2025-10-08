@@ -1,3 +1,4 @@
+import allure
 from CompanyApi import CompanyApi
 from CompanyTable import CompanyTable
 
@@ -5,7 +6,11 @@ api = CompanyApi("http://5.101.50.27:8000")
 db = CompanyTable("postgresql://qa:skyqa@5.101.50.27:5432/x_clients")
 
 
-# получить компании
+@allure.id("SKYPRO-1")
+@allure.story("Получение компаний")
+@allure.epic("Компании")
+@allure.feature("READ")
+@allure.title("Получение полного списка организаций")
 def test_get_companies():
     # шаг 1 = получить список через api
     api_result = api.get_company_list()
@@ -15,14 +20,21 @@ def test_get_companies():
     assert len(api_result) == len(db_result)
 
 
-# Проверка получения активных компаний
+@allure.id("SKYPRO-2")
+@allure.story("Получение компаний")
+@allure.epic("Компании")
+@allure.feature("READ")
+@allure.title("Получение полного списка активных организаций")
 def test_get_active_companies():
     filtered_list = api.get_company_list(params_to_add={'active': 'true'})
     db_list = db.get_active_companies()
     assert len(filtered_list) == len(db_list)
 
 
-# Проверка добавления новой компании
+@allure.id("SKYPRO-3")
+@allure.story("Создание компаний")
+@allure.epic("Компании")
+@allure.title("Получение организации по id")
 def test_add_new():
     body = api.get_company_list()
     len_before = len(body)
@@ -44,8 +56,10 @@ def test_add_new():
             assert company["description"] == descr
             assert company["id"] == new_id
 
-
-# получить компанию по ID
+@allure.id("SKYPRO-4")
+@allure.story("Получение компании по id")
+@allure.epic("Компании")
+@allure.feature("UPDATE")
 def test_get_one_company():
     name = "Skypro"
     db.create(name)
@@ -58,6 +72,7 @@ def test_get_one_company():
     assert new_company["isActive"] is True
 
 
+@allure.id("SKYPRO-5")
 # изменить информацию о компании
 def test_edit():
     name = "Skypro"
@@ -74,6 +89,7 @@ def test_edit():
     assert edited["description"] == new_descr
 
 
+@allure.id("SKYPRO-6")
 # удалить компанию
 def test_delete():
     # Добавили компанию через базу:
@@ -92,6 +108,7 @@ def test_delete():
     assert len(rows) == 0
 
 
+@allure.id("SKYPRO-7")
 # деактивировать компанию
 def test_deactivate():
     # Создаем компанию
@@ -105,6 +122,7 @@ def test_deactivate():
     assert body["is_active"] is False
 
 
+@allure.id("SKYPRO-8")
 # деактивировать и снова активировать компанию
 def test_deactivate_and_activate_back():
     # Создаем компанию:
