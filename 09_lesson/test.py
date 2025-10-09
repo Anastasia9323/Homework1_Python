@@ -5,14 +5,18 @@ db = ("postgresql://postgres:oatkorg13@localhost:5432/postgres")
 
 def test_insert(insert):
     user_email = insert
-    assert user_email is not None
+    email_in_db = db.get_user_by_email(user_email)
+    assert email_in_db == user_email
 
 
 def test_update(update):
     user_email = update
-    assert user_email == "aaa@aaa.com"
+    email_in_db = db.get_user_by_email(user_email)
+    assert email_in_db == "aaa@aaa.com"
 
 
 def test_delete(delete):
     user_email = delete
-    assert user_email is None
+    email_in_db = db.get_user_by_email(user_email)
+    assert email_in_db is None
+    
