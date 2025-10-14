@@ -71,3 +71,4 @@ class CompanyApi:
         resp = requests.patch(url_with_token,
                               json={"is_active": is_active})        
         return resp.json()
+

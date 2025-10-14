@@ -46,6 +46,7 @@ def test_update():
     sql = text("UPDATE company SET description = :descr WHERE id = :id")
     rows = db.execute(sql, descr = 'New descr', id = 6)
     
+
 def test_delete():
     sql = text("DELETE from company WHERE id = :id")
     rows = db.execute(sql, id = 6) 
